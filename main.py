@@ -7,7 +7,7 @@ from babel.numbers import format_currency
 sns.set(style='dark')
 
 # Dataset
-df = pd.read_csv('D:/DataAnalytic/dataset/all_data.csv')
+df = pd.read_csv('all_data.csv')
 
 st.title('Konsentrasi Distribusi PM2.5 diudara')
 
