@@ -74,7 +74,7 @@ Terdapat 2 fitur kategorik yang ada didalam dataset yaitu wd dan station, fitur 
 Gambar 1: Analisis sebaran pada setiap fitur numerik
 
 Analisis:
-- Peningkatan Partikel udara sebanding dengan penurunan jumlah sampel. Hal ini dapat kita lihat jelas dari histogram "PM2.5" yang grafiknya mengalami penurunan seiring dengan semakin banyaknya jumlah sampel (sumbu x).
+- Peningkatan Partikel udara sebanding dengan penurunan jumlah sampel. Hal ini dapat dilihat jelas dari histogram "PM2.5" yang grafiknya mengalami penurunan seiring dengan semakin banyaknya jumlah sampel (sumbu x).
 - Rentang partikel cukup tinggi yaitu dari skala ratusan hingga sekitar 15 ribuan.
 - Distribusi harga miring ke kanan (right-skewed). Hal ini akan berimplikasi pada model.
 
@@ -92,21 +92,6 @@ Gambar 3: Correlation Matrix
 
 Analisis: Berdasarkan hasil visualisasi yang didapat dapat disimpulkan fitur yang berkolerasi tinggi dengan PM2.5 yaitu PM10, NO2, dan CO. Sedangkan wd, date, year, month, day, hour tidak berkorelasi dengan baik sehingga bisa di drop.
 
-### Mengatasi Missing Value
-1. **Mengisi Missing Value dengan Rata-Rata (Mean Imputation)**:
-   ```python
-   df.fillna(value=df.mean(), inplace=True)
-   ```
-   Dalam langkah pertama, kode ini mengisi missing value dalam kolom-kolom numerik dengan nilai rata-rata dari setiap kolom. Ini adalah teknik yang umum digunakan untuk mengatasi missing value dalam data numerik. Misalnya, jika Anda memiliki data keuangan dan ada beberapa nilai yang hilang dalam kolom "Pendapatan", Anda dapat menggantinya dengan rata-rata pendapatan dari seluruh data. `df.mean()` menghitung rata-rata untuk setiap kolom numerik dalam DataFrame dan menggantikan nilai-nilai yang hilang dengan rata-rata tersebut.
-
-2. **Mengisi Missing Value dalam Kolom Objek (Object Columns) dengan "Unknown"**:
-   ```python
-   object_columns = df.select_dtypes(include=['object'])
-   df[object_columns.columns] = object_columns.fillna("Unknown")
-   ```
-   Dalam langkah kedua, kode ini mengatasi missing value dalam kolom dengan tipe data objek (biasanya berisi data kategorikal) dengan menggantinya dengan string "Unknown". Ini adalah pendekatan yang umum digunakan untuk mengatasi missing value dalam kolom-kolom yang berisi kategori atau label, di mana menggantinya dengan "Unknown" dapat menjadi alternatif yang berguna.
-
-Kombinasi dari kedua langkah ini memastikan bahwa data numerik diisi dengan nilai rata-rata yang masuk akal, sementara data objek (kategori) diisi dengan "Unknown" sebagai placeholder. Teknik ini membantu mempertahankan integritas data dan memungkinkan analisis lebih lanjut tanpa kehilangan informasi yang signifikan karena missing value.
 
 ## Data Preparation
 1. Train Test Split
@@ -115,6 +100,14 @@ Kombinasi dari kedua langkah ini memastikan bahwa data numerik diisi dengan nila
 2. Normalization
    Algoritma machine learning akan memiliki performa lebih baik dan bekerja lebih cepat jika dimodelkan dengan data seragam yang memiliki skala relatif sama. Salah satu teknik normalisasi yang digunakan pada proyek ini adalah Standarisasi dengan sklearn.preprocessing.StandardScaler.
 
+### Mengatasi Missing Value
+1. **Mengisi Missing Value dengan Rata-Rata (Mean Imputation)**:
+   Dalam langkah pertama, kode ini mengisi missing value dalam kolom-kolom numerik dengan nilai rata-rata dari setiap kolom. Ini adalah teknik yang umum digunakan untuk mengatasi missing value dalam data numerik. Misalnya, jika memiliki data keuangan dan ada beberapa nilai yang hilang dalam kolom "Pendapatan", kemudian dapat menggantinya dengan rata-rata pendapatan dari seluruh data. Kemudian menghitung rata-rata untuk setiap kolom numerik dalam DataFrame dan menggantikan nilai-nilai yang hilang dengan rata-rata tersebut.
+
+2. **Mengisi Missing Value dalam Kolom Objek (Object Columns) dengan "Unknown"**:
+   Dalam langkah kedua, kode ini mengatasi missing value dalam kolom dengan tipe data objek (biasanya berisi data kategorikal) dengan menggantinya dengan string "Unknown". Ini adalah pendekatan yang umum digunakan untuk mengatasi missing value dalam kolom-kolom yang berisi kategori atau label, di mana menggantinya dengan "Unknown" dapat menjadi alternatif yang berguna.
+
+Kombinasi dari kedua langkah ini memastikan bahwa data numerik diisi dengan nilai rata-rata yang masuk akal, sementara data objek (kategori) diisi dengan "Unknown" sebagai placeholder. Teknik ini membantu mempertahankan integritas data dan memungkinkan analisis lebih lanjut tanpa kehilangan informasi yang signifikan karena missing value.
 
 
 ## Modeling
@@ -147,21 +140,35 @@ Dalam pengembangan model untuk dataset ini, digunakan beberapa jenis algoritma r
       - Kompleksitas model dan waktu pelatihan yang lebih lama.
 
 ### Fine-Tuning Model dan Parameter yang digunakan
-Berikut adalah parameter-parameter yang biasanya diperlukan dalam fine-tuning untuk setiap algoritma yang telah Anda sebutkan:
-1. **Linear Regression**: Linear Regression adalah model yang cukup sederhana, dan parameter utamanya adalah koefisien (bobot) yang menentukan hubungan linier antara variabel independen dan dependen. Anda tidak memerlukan fine-tuning yang rumit untuk model ini.
+Berikut adalah parameter-parameter yang biasanya diperlukan dalam fine-tuning untuk setiap algoritma yang telah disebutkan:
+1. **Linear Regression**: Linear Regression adalah model yang cukup sederhana, dan parameter utamanya adalah koefisien (bobot) yang menentukan hubungan linier antara variabel independen dan dependen. Sehingga tidak memerlukan fine-tuning yang rumit untuk model ini.
 
 2. **Decision Tree Regressor**: Decision Tree memiliki beberapa parameter penting, di antaranya:
-   - `max_depth`: Ini adalah parameter yang mengatur kedalaman pohon. Anda dapat mengontrol kompleksitas model dengan mengatur nilai ini.
+   - `max_depth`: Ini adalah parameter yang mengatur kedalaman pohon. Sehingga dapat mengontrol kompleksitas model dengan mengatur nilai ini.
    - `min_samples_split`: Parameter ini menentukan jumlah sampel minimum yang diperlukan untuk membagi node dalam pohon.
    - `min_samples_leaf`: Parameter ini menentukan jumlah sampel minimum yang diperlukan untuk membentuk daun (leaf) dalam pohon.
    - `max_features`: Parameter ini mengatur jumlah fitur yang akan dipertimbangkan saat mencari pemisah terbaik.
+     
+   Setelah melakukan fine tunning didapatkan parameter terbaik yaitu:
+   - `max_depth`: 7
+   - `max_features`: 'auto'
+   - `min_samples_leaf`: 10
+   - `min_samples_split`: 2
+
 
 3. **Random Forest Regressor**: Random Forest adalah ensemble model yang didasarkan pada Decision Trees, sehingga parameter Decision Tree juga berlaku di sini. Selain itu, ada beberapa parameter tambahan yang perlu dipertimbangkan:
    - `n_estimators`: Ini adalah jumlah pohon keputusan dalam ensemble.
    - `max_features`: Parameter ini mengatur jumlah fitur yang akan dipertimbangkan saat mencari pemisah terbaik dalam setiap pohon.
    - `bootstrap`: Jika diatur sebagai True, maka sampel bootstrap akan digunakan saat melatih setiap pohon.
+  
+  Setelah melakukan fine tunning didapatkan parameter terbaik yaitu:
+  - `n_estimators`: 300
+  -  `min_samples_split`: 5
+  -  `min_samples_leaf`: 2
+  -  `max_features`: 'auto'
+  - `max_depth`: 5
 
-Selama proses fine-tuning, Anda dapat mengubah nilai-nilai parameter ini dan memeriksa dampaknya pada kinerja model. Anda dapat menggunakan metode cross-validation atau pengujian validasi untuk menentukan kombinasi parameter terbaik untuk setiap algoritma. Nilai-nilai optimal parameter akan bervariasi tergantung pada dataset dan masalah yang Anda hadapi.
+Selama proses fine-tuning, nilai-nilai parameter ini dan memeriksa dampaknya pada kinerja model dapat dirubah. Perubahan dapat menggunakan metode cross-validation atau pengujian validasi untuk menentukan kombinasi parameter terbaik untuk setiap algoritma. Nilai-nilai optimal parameter akan bervariasi tergantung pada dataset dan masalah yang hadapi.
 
    
 
