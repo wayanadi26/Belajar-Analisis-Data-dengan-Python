@@ -68,6 +68,7 @@ Univariate Analysis adalah menganalisis setiap fitur didalam data secara terpisa
 #### Analisis jumlah nilai unique pada setiap fitur kategorik
 Terdapat 2 fitur kategorik yang ada didalam dataset yaitu wd dan station.
 1. wd (arah angin), fitur ini memiliki sebaran yang cukup merata
+   
    ![image](https://github.com/wayanadi26/Belajar-Analisis-Data-dengan-Python/assets/88713651/5c2518e2-0a82-490c-a06b-3fae647b8348)
 
    Gambar 1. sebaran fitur wd
@@ -157,12 +158,16 @@ Dengan demikian, setelah pertimbangan lebih rinci ini, Random Forest Regressor d
 
 ## Evaluation
 Metrik evaluasi yang digunakan pada proyek ini adalah akurasi dan mean squared error (MSE). Akurasi menentukan tingkat kemiripan antara hasil prediksi dengan nilai yang sebenarnya (y_test). Mean squared error (MSE) mengukur error dalam model statistik dengan cara menghitung rata-rata error dari kuadrat hasil aktual dikurang hasil prediksi.
+
 ![image](https://github.com/wayanadi26/Belajar-Analisis-Data-dengan-Python/assets/88713651/48eedf24-9d0f-4d8c-9482-011887e920ef)
 
 - Berikut hasil evaluasi pada proyek
   - Accuracy
+    
     ![image](https://github.com/wayanadi26/Belajar-Analisis-Data-dengan-Python/assets/88713651/00d11cd7-e309-4f20-b676-d2034dc99622)
+    
   - MSE
+    
     ![image](https://github.com/wayanadi26/Belajar-Analisis-Data-dengan-Python/assets/88713651/dbf4e580-9291-496d-ab82-02536a938daf)
 
   
