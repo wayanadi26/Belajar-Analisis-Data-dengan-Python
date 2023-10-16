@@ -4,30 +4,37 @@
 
 ### Domain : Lingkungan / Udara
 ### Latar belakang
-Pencemaran udara dapat memiliki dampak serius terhadap kesehatan manusia, seperti penyakit pernapasan dan penyakit jantung. Oleh karena itu, pemahaman dan prediksi kualitas udara menjadi kunci dalam mengidentifikasi ancaman potensial dan mengambil langkah-langkah pencegahan yang tepat. Selain itu, perubahan iklim global telah mempengaruhi pola pencemaran udara, membuat analisis prediksi semakin penting dalam menghadapi perubahan lingkungan yang cepat. Teknologi sensor dan Internet of Things (IoT) telah membantu dalam pengumpulan data kualitas udara yang lebih akurat dan real-time, memungkinkan pemantauan dan respons yang lebih efektif terhadap pencemaran udara.
-Prediksi kualitas udara juga memberikan manfaat kepada masyarakat dengan memberikan informasi yang tepat waktu dan akurat. Ini memungkinkan individu untuk mengambil tindakan preventif, seperti menghindari daerah dengan tingkat pencemaran tinggi saat kualitas udara sedang buruk. Dengan demikian, analisis prediksi kualitas udara bukan hanya alat penting dalam manajemen lingkungan, tetapi juga merupakan alat penting dalam melibatkan dan memberdayakan masyarakat untuk melindungi kesehatan mereka sendiri.
+Pencemaran udara adalah masalah serius yang telah membawa dampak konkret dan merugikan terhadap kesehatan manusia. Data statistik yang ada menggambarkan dampak yang mengkhawatirkan dari pencemaran udara terhadap masyarakat. Pencemaran udara telah dikaitkan dengan peningkatan insiden penyakit pernapasan seperti asma, bronkitis, dan bahkan kanker paru-paru. Di samping itu, penyakit jantung juga memiliki keterkaitan erat dengan kualitas udara yang buruk. Studi ilmiah telah menunjukkan bahwa orang yang terpapar polusi udara yang tinggi memiliki risiko yang lebih tinggi untuk mengembangkan penyakit jantung koroner, yang dapat mengakibatkan serangan jantung fatal.
+
+Lebih dari itu, pencemaran udara juga memiliki dampak buruk pada kelompok rentan seperti anak-anak dan lansia. Anak-anak yang tinggal di daerah dengan tingkat pencemaran udara tinggi dapat mengalami gangguan pertumbuhan paru-paru, yang dapat berdampak seumur hidup pada kesehatan mereka. Sementara itu, lansia lebih rentan terhadap komplikasi penyakit pernapasan yang disebabkan oleh polusi udara.
+
+Untuk mengatasi masalah serius ini, diperlukan upaya serius dalam pemantauan dan pengelolaan kualitas udara. Inilah di mana teknologi sensor dan Internet of Things (IoT) memainkan peran yang sangat penting. Teknologi sensor canggih dan jaringan IoT telah memungkinkan pengumpulan data kualitas udara yang lebih akurat dan real-time. Sensor-sensor ini tersebar luas di seluruh wilayah perkotaan, mengukur parameter seperti partikel PM2,5, oksida nitrogen, dan senyawa organik volatil.
+
+Melalui jaringan IoT, data ini dikumpulkan secara terus-menerus dan dikirim ke pusat pemantauan. Ini memungkinkan para peneliti dan ahli lingkungan untuk memahami dengan lebih baik pola pencemaran udara, mengidentifikasi sumber polusi, dan merespons perubahan dengan cepat. Selain itu, data yang dihasilkan oleh teknologi sensor dan IoT ini juga memberikan informasi yang lebih akurat dan tepat waktu kepada masyarakat.
+
+Masyarakat dapat mengakses data ini melalui aplikasi seluler atau situs web yang memungkinkan mereka untuk mengambil tindakan preventif. Misalnya, mereka dapat menghindari daerah dengan tingkat pencemaran tinggi saat kualitas udara sedang buruk, atau mereka dapat menggunakan masker penutup wajah untuk mengurangi risiko terpapar partikel berbahaya.
+
+Dengan demikian, teknologi sensor dan IoT bukan hanya alat penting dalam pemantauan dan manajemen lingkungan yang lebih efektif, tetapi juga merupakan alat penting dalam melibatkan dan memberdayakan masyarakat untuk melindungi kesehatan mereka sendiri. Dengan data yang lebih akurat dan akses yang lebih mudah, individu dapat menjadi bagian dari solusi dalam mengurangi dampak negatif dari pencemaran udara terhadap kesehatan mereka dan lingkungan sekitar.
 
 ## Business Understanding
-Proyek ini dibangun untuk membantu pemangku kepentingan dalam menangani permasalahan polusi udara:
-1. Pemerintah, dengan adanya predictive analytics terkait kualitas udara maka pemerintah dapat memberikan solusi preventive untuk menanganinya.
-2. Masyarakat, masyarakat dapat lebih mempersiapkan diri dengan baik apabila kualitas udara semakin memburuk.
-   
+Proyek ini bertujuan untuk membantu pemangku kepentingan dalam menangani permasalahan polusi udara dengan pendekatan analitik:
+- Pemerintah: Melalui analisis prediktif terkait kualitas udara, pemerintah dapat memberikan solusi preventif yang lebih efektif untuk mengatasi masalah polusi udara.
+- Masyarakat: Dengan pemahaman yang lebih baik tentang kualitas udara dan perubahan yang mungkin terjadi, masyarakat dapat mempersiapkan diri dengan lebih baik saat kualitas udara memburuk.
 ### Problem Statements
-1. Parameter apakah yang paling berkaitan dengan tingkat kualitas udara?
-2. Bagaimana rata-rata pergerakan arah angin yang mempengaruhi kualitas udara?
-3. Bagaimana model yang paling tepat untuk memprediksi kualitas udara?
-
+- Parameter yang Berkaitan: Parameter apa yang paling kuat berhubungan dengan tingkat kualitas udara, dan bagaimana pengaruhnya terhadap polusi udara?
+- Dampak Arah Angin: Bagaimana arah dan kecepatan angin mempengaruhi tingkat polusi udara?
+- Pemilihan Model: Manakah model yang paling tepat untuk memprediksi kualitas udara?
 ### Goals
-Adapun Goals dari proyek ini yaitu:
-1. Mengetahui parameter yang paling berpengaruh terhadap kualitas udara, mengetahui arah pergerakan angin yang mempengaruhi kualitas udara, membuat model yang paling bagus untuk memprediksi kualitas udara.
-2. Dapat memberikan saran tindakan preventive kepada pemerintah terkait bagaimana menangani permasalahan kualitas udara yang buruk.
+Tujuan dari proyek ini adalah:
+- Menganalisis Faktor Utama: Mengidentifikasi parameter yang paling berpengaruh pada kualitas udara, mengevaluasi dampak pergerakan angin, dan membangun model prediksi yang akurat.
+- Rekomendasi Preventif: Memberikan rekomendasi tindakan preventif kepada pemerintah berdasarkan hasil analisis, sehingga mereka dapat mengambil tindakan yang lebih efektif.
 
-Semua poin di atas harus diuraikan dengan jelas. Anda bebas menuliskan berapa pernyataan masalah dan juga goals yang diinginkan.
-
-### Solution statements
-1. Menganalisis data dengan melakukan univariate analysis dan multivariate analysis, membuat visualisasi, mengetahui kolerasi antar fitur dan mendeteksi outlier.
-2. Menyiapkan data agar bisa digunakan dalam membangun model.
-3. Melakukan hyperparameter tuning menggunakan grid search dan membangun model regresi yang dapat memprediksi bilangan kontinu. ALgoritma yang dipakai dalam proyek ini adalah Linear Regression, Decision Tree, dan Random Forest.
+### Key Metrics
+Untuk mengukur kesuksesan proyek, akan digunakan beberapa metrik kunci, termasuk:
+- Mean Absolute Error (MAE): Sebagai ukuran akurasi model dalam memprediksi kualitas udara.
+- Korelasi Parameter: Untuk menilai sejauh mana parameter tertentu berkaitan dengan tingkat polusi udara.
+- Visualisasi yang Informatif: Keberhasilan dalam menciptakan visualisasi yang informatif untuk pemangku kepentingan.
+Dengan mengintegrasikan metrik ini, proyek ini akan dapat memberikan hasil yang lebih terukur dan fokus pada tujuan dan permasalahan yang diidentifikasi.
 
 ## Data Understanding
 Dataset yang digunakan meruapakan dataset kualitas udara di kota Changping, sumber data yaitu: https://drive.google.com/file/d/1RhU3gJlkteaAQfyn9XOVAz7a5o1-etgr/view
@@ -35,8 +42,6 @@ Informasi dataset:
 - Dataset berformat csv
 - Dataset memiliki 35064 sample dengan 18 fitur.
 - Dataset memiliki 11 fitur bertipe data float64, 5 fitur bertipe data int64, dan 2 fitur bertipe data object.
-- Terdapat beberapa missing value dalam dataset. 
-  ![image](https://github.com/wayanadi26/Belajar-Analisis-Data-dengan-Python/assets/88713651/e20e09c0-97fa-42be-ad25-d661a02ae169)
 
 ### Variabel-variabel pada dataset adalah sebagai berikut:
 - No: Nomor urut dari sample data
@@ -58,6 +63,11 @@ Informasi dataset:
 - station: nama lokasi pemantauan kualitas udara
 
 Dari semua variable yang ada, variable PM2.5 menjadi fitur yang akan di prediksi (y)
+### Univariate Analisis
+Univariate Analysis adalah menganalisis setiap fitur didalam data secara terpisah.
+#### Analisis jumlah nilai unique pada setiap fitur kategorik
+Terdapat 2 fitur kategorik yang ada didalam dataset yaitu wd dan station, kedua fitur tersebut memiliki sebaran yang merata:
+   ![image](https://github.com/wayanadi26/Belajar-Analisis-Data-dengan-Python/assets/88713651/5c2518e2-0a82-490c-a06b-3fae647b8348)
 
 ## Data Preparation
 Pada tahap ini saya melakukan loading data kemudian melakukan EDA dengan mengecek missing value, data duplicate, kemudian memperbaikinya, setelah itu melakukan Univariate analysis dengan membagi antara data numeric dengan data categoric.
