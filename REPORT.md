@@ -66,71 +66,97 @@ Dari semua variable yang ada, variable PM2.5 menjadi fitur yang akan di prediksi
 ### Univariate Analisis
 Univariate Analysis adalah menganalisis setiap fitur didalam data secara terpisah.
 #### Analisis jumlah nilai unique pada setiap fitur kategorik
-Terdapat 2 fitur kategorik yang ada didalam dataset yaitu wd dan station, kedua fitur tersebut memiliki sebaran yang merata:
+Terdapat 2 fitur kategorik yang ada didalam dataset yaitu wd dan station.
+1. wd (arah angin), fitur ini memiliki sebaran yang cukup merata
    ![image](https://github.com/wayanadi26/Belajar-Analisis-Data-dengan-Python/assets/88713651/5c2518e2-0a82-490c-a06b-3fae647b8348)
 
+   Gambar 1. sebaran fitur wd
+
+3. station (nama lokasi pemantauan kualitas udara), fitur ini hanya terdiri dari satu data nama lokasi yaitu Changping sebanyak 35064 data
+   ![image](https://github.com/wayanadi26/Belajar-Analisis-Data-dengan-Python/assets/88713651/b5b161c2-3f24-4444-b228-27fb8072152f)
+
+   Gambar 2. Sebaran fitur station
+
+   
+#### Analisis sebaran pada setiap fitur numerik
+![image](https://github.com/wayanadi26/Belajar-Analisis-Data-dengan-Python/assets/88713651/be404a86-adcc-412b-a338-fce1c5ae6cb9)
+
+Gambar 3: Analisis sebaran pada setiap fitur numerik
+
+Analisis:
+- Peningkatan Partikel udara sebanding dengan penurunan jumlah sampel. Hal ini dapat kita lihat jelas dari histogram "PM2.5" yang grafiknya mengalami penurunan seiring dengan semakin banyaknya jumlah sampel (sumbu x).
+- Rentang partikel cukup tinggi yaitu dari skala ratusan hingga sekitar 15 ribuan.
+- Distribusi harga miring ke kanan (right-skewed). Hal ini akan berimplikasi pada model.
+
+### Multivariate analysis
+![image](https://github.com/wayanadi26/Belajar-Analisis-Data-dengan-Python/assets/88713651/f7127486-da8e-4885-856f-c946b4386f14)
+
+Gambar 4: Analisis fitur kategori
+
+Fitur 'wd' rata-rata partikel PM2.5 cenderung mirip, rentangnya berada diantara 45 sampai dengan 95. Kesimpulannya fitur kategorikal tidak terlalu mempengaruhi tingkat partikel diudara.
+
+### Correlation Matrix
+![image](https://github.com/wayanadi26/Belajar-Analisis-Data-dengan-Python/assets/88713651/056ffc65-0c4c-46ef-a723-6837f917bd11)
+
+Gambar 5: Correlation Matrix
+
+Analisis: Berdasarkan hasil visualisasi yang didapat dapat disimpulkan fitur yang berkolerasi tinggi dengan PM2.5 yaitu PM10, NO2, dan CO. Sedangkan wd, date, year, month, day, hour tidak berkorelasi dengan baik sehingga bisa di drop.
+
 ## Data Preparation
-Pada tahap ini saya melakukan loading data kemudian melakukan EDA dengan mengecek missing value, data duplicate, kemudian memperbaikinya, setelah itu melakukan Univariate analysis dengan membagi antara data numeric dengan data categoric.
-### Data Loading
-- Mengunduh dataset air quality kemudian disimpan ke Google Drive sebagai base directorynya
-  ![image](https://github.com/wayanadi26/Belajar-Analisis-Data-dengan-Python/assets/88713651/144ff674-7692-4ec5-b8ea-45e04b5def22)
+1. Train Test Split
+   Train test split aja proses membagi data menjadi data train dan data test. Data latih akan digunakan untuk membangun model, sedangkan data uji akan digunakan untuk menguji performa model. Pada proyek ini dataset dibagi dengan perbandingan 80% untuk data training dan 20% untuk data testing.
 
-### Exploratory Data Analysis (EDA)
-- Mengecek informasi dataset
-  ![image](https://github.com/wayanadi26/Belajar-Analisis-Data-dengan-Python/assets/88713651/434815f7-7439-499f-92c7-9cf677611c60)
-  Terdapat 11 kolom dengan tipe float64, 4 kolom int64, dan 2 kolom object
-- Mengecek deskripsi data (mean, median, q1, q2, q3, std dan lain sebagianya
-  ![image](https://github.com/wayanadi26/Belajar-Analisis-Data-dengan-Python/assets/88713651/9774857c-4d69-4402-a08e-9394ddc5c17e)
-- Cek duplicate data
-  ![image](https://github.com/wayanadi26/Belajar-Analisis-Data-dengan-Python/assets/88713651/72442243-fff9-4bc9-8f76-cd7c30e3dac4)
-  Tidak ada data duplicate pada dataset
-- Cek Missing Value
-  ![image](https://github.com/wayanadi26/Belajar-Analisis-Data-dengan-Python/assets/88713651/37fd9cc3-f04f-4482-bbda-91cdbefee7a7)
-  Terlihat bahwa CO merupakan kolom dengan missing value paling banyak
-- Memperbaiki missing data
-  ![image](https://github.com/wayanadi26/Belajar-Analisis-Data-dengan-Python/assets/88713651/97623979-686c-4460-86ce-29cb9bcda43f)
-  Semua data sudah oke dan tidak ada missing value
-- Drop kolom 'No' dan 'Station' karena kolom 'No' tidak relevan dengan dataset dan karena station yang dipake cuma satu station.
-  ![image](https://github.com/wayanadi26/Belajar-Analisis-Data-dengan-Python/assets/88713651/cde536d9-6bb9-412b-b872-98a35aeb8cf3)
-- Univariate data (Memisahkan data numerical dengan data categorical)
-  ![image](https://github.com/wayanadi26/Belajar-Analisis-Data-dengan-Python/assets/88713651/97508cc1-a4d6-44ff-a980-2fbf749c4444)
-- Cek categorical feature
-  ![image](https://github.com/wayanadi26/Belajar-Analisis-Data-dengan-Python/assets/88713651/3de3502c-5c55-43b6-99d1-fa0b70fdffe9)
-  ![image](https://github.com/wayanadi26/Belajar-Analisis-Data-dengan-Python/assets/88713651/f7e6f644-1041-4f18-ba65-4b36a4c2bf46)
+2. Normalization
+   Algoritma machine learning akan memiliki performa lebih baik dan bekerja lebih cepat jika dimodelkan dengan data seragam yang memiliki skala relatif sama. Salah satu teknik normalisasi yang digunakan pada proyek ini adalah Standarisasi dengan sklearn.preprocessing.StandardScaler.
 
-- Cek Numerical features
-  ![image](https://github.com/wayanadi26/Belajar-Analisis-Data-dengan-Python/assets/88713651/5c480228-82a6-4ad3-8b81-1f58efc14dc3)
-  ![image](https://github.com/wayanadi26/Belajar-Analisis-Data-dengan-Python/assets/88713651/b092eb03-1f91-42b0-8681-bfc9b66bf927)
 
-- Dilihat dari analisis visualisasi di atas, dapat disimpulkan bahwa wd, date, year, month, day, hour tidak berkorelasi dengan baik sehingga bisa di drop
-  ![image](https://github.com/wayanadi26/Belajar-Analisis-Data-dengan-Python/assets/88713651/66b6f0d1-2f6f-46df-9988-064ce01a67bc)
 
 ## Modeling
-### Train Test Split
-Sebelum melakukan proses modeling pertama kita harus membagi dataset menjadi dataset train dan dataset test dengan perbandoingan 80%:20%
-![image](https://github.com/wayanadi26/Belajar-Analisis-Data-dengan-Python/assets/88713651/5e91ca28-9eb1-44e8-81e2-883006c9175b)
+### Pemilihan Model
+Dalam pengembangan model untuk dataset ini, digunakan beberapa jenis algoritma regresi diantaranya:
+1. Linear Regression
+   Alasan Pemilihan: Linear Regression adalah model regresi yang sederhana dan mudah dipahami. Pemilihan model ini sebagai dasar atau pembanding awal untuk melihat sejauh mana performa model sederhana ini dalam memprediksi data.
+   - Keunggulan:
+      - Sederhana dan mudah diimplementasikan.
+   - Kelemahan:
+      - Terbatas dalam menangani hubungan yang kompleks dalam data.
+      - Tidak efektif ketika hubungan antara variabel dependen dan independen tidak bersifat linier.
 
-### Pemilihan model
-1. Model pertama yang digunakan adalah Linear Regression
-   ![image](https://github.com/wayanadi26/Belajar-Analisis-Data-dengan-Python/assets/88713651/7b258094-bcb2-4201-ac57-17a540cb911d)
-   Pada model ini akurasi train dan test sangat rendah karena hanya 68%
 2. Decision Tree Regressor
-   ![image](https://github.com/wayanadi26/Belajar-Analisis-Data-dengan-Python/assets/88713651/ec58a215-f3d0-4070-98bd-132eb7ca21d5)
-   - Model ini menghasilkan nilai prediksi yang lumayan bagus yakni diangka 82%
-   - Setelah dilakukan fine tunning akusrasi model tidak terlalu memberikan perubahan yang signifikan
-     ![image](https://github.com/wayanadi26/Belajar-Analisis-Data-dengan-Python/assets/88713651/6410efc1-e006-4826-93e5-ec32a427fb1b)
+   Alasan Pemilihan: Decision Tree Regressor adalah model non-linear yang dapat menangani hubungan yang lebih kompleks antara variabel dependen dan independen. Tujuan pemilihan model ini yaitu ingin melihat apakah model ini dapat memberikan prediksi yang lebih baik daripada Linear Regression.
+   - Keunggulan:
+      - Dapat menangani hubungan non-linear.
+      - Mudah diinterpretasikan.
+   - Kelemahan:
+      - Rentan terhadap overfitting, terutama jika tidak diatur dengan baik.
+      - Tidak stabil terhadap perubahan data kecil.
 
 3. Random Forest Regressor
-   ![image](https://github.com/wayanadi26/Belajar-Analisis-Data-dengan-Python/assets/88713651/bbe50eff-d1c1-4baf-a418-cb2f9ac01bdc)
-   - Model ini menghasilkan nilai prediksi yang lumayan bagus yakni diangka 84%
-   - Setelah dilakukan fine tunning akusrasi model tidak terlalu memberikan perubahan yang signifikan
-     ![image](https://github.com/wayanadi26/Belajar-Analisis-Data-dengan-Python/assets/88713651/fb2655e5-5326-4389-9b0c-6ea3496059af)
-     
-Dari ketiga model yang digunakan maka, model yang dipakai dalah model Random Forest Regressor.
+   Alasan Pemilihan: Random Forest Regressor adalah model ensemble yang dibangun di atas Decision Tree. Tujuan pemilihan model ini yaitu karena ensemble model cenderung mengurangi overfitting dan meningkatkan performa model regresi.
+   - Keunggulan:
+      - Dapat menangani hubungan non-linear.
+      - Mengurangi overfitting dengan menggunakan banyak pohon keputusan.
+      - Meningkatkan akurasi prediksi.
+   - Kelemahan:
+      - Kompleksitas model dan waktu pelatihan yang lebih lama.
 
+### Fine-Tuning Model
+1. Decision Tree Regressor:
+   Pada model ini dilakukan fine-tuning pada parameter "max_depth" untuk mengontrol kedalaman pohon keputusan. Hasil fine-tuning menunjukkan bahwa nilai "max_depth" yang lebih rendah mengurangi overfitting dan memberikan hasil prediksi yang lebih baik.
+2. Random Forest Regressor:
+   Pada model ini dilakukan fine-tuning pada beberapa parameter, termasuk "n_estimators" (jumlah pohon dalam ensemble) dan "max_depth" untuk masing-masing pohon. Hasilnya menunjukkan bahwa peningkatan jumlah "n_estimators" memberikan sedikit peningkatan dalam akurasi, sementara mengatur "max_depth" membantu mengendalikan overfitting.
+
+### Alasan Pemilihan Model
+1. Linear Regression: Model ini mencoba untuk mencari hubungan linier antara variabel dependen dan independen. Ini melibatkan mencari koefisien regresi terbaik yang menggambarkan hubungan tersebut.
+
+2. Decision Tree Regressor: Decision Tree adalah struktur pohon yang memecah data menjadi subset yang semakin kecil berdasarkan fitur-fitur yang ada. Tujuannya adalah untuk membagi data hingga mencapai daun pohon yang berisi nilai regresi.
+
+3. Random Forest Regressor: Model ini adalah ensemble dari beberapa Decision Trees. Setiap pohon dalam ensemble memberikan prediksi, dan hasil akhirnya adalah rata-rata prediksi dari semua pohon. Ini mengurangi overfitting dan meningkatkan akurasi prediksi.
+
+Dengan demikian, setelah pertimbangan lebih rinci ini, Random Forest Regressor dipilih sebagai model yang paling cocok untuk dataset ini, karena mampu menangani hubungan non-linear dan mengurangi risiko overfitting melalui ensemble dari Decision Trees. Meskipun tidak memberikan perubahan yang signifikan setelah fine-tuning, model ini memberikan performa yang paling baik dibandingkan dengan model lainnya.
 
 ## Evaluation
-Metrik evaluasi yang digunakan pada proyek ini adalah akurasi dan mean squared error (MSE).
+Metrik evaluasi yang digunakan pada proyek ini adalah akurasi dan mean squared error (MSE). Akurasi menentukan tingkat kemiripan antara hasil prediksi dengan nilai yang sebenarnya (y_test). Mean squared error (MSE) mengukur error dalam model statistik dengan cara menghitung rata-rata error dari kuadrat hasil aktual dikurang hasil prediksi.
 ![image](https://github.com/wayanadi26/Belajar-Analisis-Data-dengan-Python/assets/88713651/48eedf24-9d0f-4d8c-9482-011887e920ef)
 
 - Berikut hasil evaluasi pada proyek
