@@ -181,23 +181,25 @@ Metrik evaluasi yang digunakan pada proyek ini adalah akurasi dan mean squared e
 
 - Berikut hasil evaluasi pada proyek
 ### Accuracy Model
-      |   Model   |   Score   |
-      |:---------:|:---------:|
-      |    LR     |  0.677818 |
-      |    DT     |  0.812010 |
-      |    RF     |  0.822758 |
+
+   |   Model   |   Score   |
+   |:---------:|:---------:|
+   |    LR     |  0.677818 |
+   |    DT     |  0.812010 |
+   |    RF     |  0.822758 |
+
       
 
-   ![image](https://github.com/wayanadi26/Belajar-Analisis-Data-dengan-Python/assets/88713651/00d11cd7-e309-4f20-b676-d2034dc99622)
+![image](https://github.com/wayanadi26/Belajar-Analisis-Data-dengan-Python/assets/88713651/55f64441-a1c1-4ce8-ad4f-4ab492b1ea3f)
 
 
 
 ### Mean Squared Error (MSE)
-    | Model | MSE     |
-    |-------|---------|
-    | LR    | 0.384535|
-    | DT    | 0.473679|
-    | RF    | 0.436133|
+   | Model | MSE     |
+   |-------|---------|
+   | LR    | 0.384535|
+   | DT    | 0.473679|
+   | RF    | 0.436133|
 
    ![image](https://github.com/wayanadi26/Belajar-Analisis-Data-dengan-Python/assets/88713651/dbf4e580-9291-496d-ab82-02536a938daf)
 
