@@ -161,12 +161,12 @@ Berikut adalah parameter-parameter yang biasanya diperlukan dalam fine-tuning un
    - `max_features`: Parameter ini mengatur jumlah fitur yang akan dipertimbangkan saat mencari pemisah terbaik dalam setiap pohon.
    - `bootstrap`: Jika diatur sebagai True, maka sampel bootstrap akan digunakan saat melatih setiap pohon.
   
-  Setelah melakukan fine tunning didapatkan parameter terbaik yaitu:
-  - `n_estimators`: 300
-  -  `min_samples_split`: 5
-  -  `min_samples_leaf`: 2
-  -  `max_features`: 'auto'
-  - `max_depth`: 5
+   Setelah melakukan fine tunning didapatkan parameter terbaik yaitu:
+   - `n_estimators`: 300
+   -  `min_samples_split`: 5
+   -  `min_samples_leaf`: 2
+   -  `max_features`: 'auto'
+   - `max_depth`: 5
 
 Selama proses fine-tuning, nilai-nilai parameter ini dan memeriksa dampaknya pada kinerja model dapat dirubah. Perubahan dapat menggunakan metode cross-validation atau pengujian validasi untuk menentukan kombinasi parameter terbaik untuk setiap algoritma. Nilai-nilai optimal parameter akan bervariasi tergantung pada dataset dan masalah yang hadapi.
 
