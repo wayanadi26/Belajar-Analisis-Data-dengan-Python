@@ -180,23 +180,26 @@ Metrik evaluasi yang digunakan pada proyek ini adalah akurasi dan mean squared e
 ![image](https://github.com/wayanadi26/Belajar-Analisis-Data-dengan-Python/assets/88713651/48eedf24-9d0f-4d8c-9482-011887e920ef)
 
 - Berikut hasil evaluasi pada proyek
-  - Accuracy
-    |   Model   |   Score   |
-|:---------:|:---------:|
-|    LR     |  0.677818 |
-|    DT     |  0.812010 |
-|    RF     |  0.822758 |
+### Accuracy Model
+      |   Model   |   Score   |
+      |:---------:|:---------:|
+      |    LR     |  0.677818 |
+      |    DT     |  0.812010 |
+      |    RF     |  0.822758 |
+      
 
-    ![image](https://github.com/wayanadi26/Belajar-Analisis-Data-dengan-Python/assets/88713651/00d11cd7-e309-4f20-b676-d2034dc99622)
-    
-  - MSE
+   ![image](https://github.com/wayanadi26/Belajar-Analisis-Data-dengan-Python/assets/88713651/00d11cd7-e309-4f20-b676-d2034dc99622)
+
+
+
+### Mean Squared Error (MSE)
     | Model | MSE     |
-|-------|---------|
-| LR    | 0.384535|
-| DT    | 0.473679|
-| RF    | 0.436133|
+    |-------|---------|
+    | LR    | 0.384535|
+    | DT    | 0.473679|
+    | RF    | 0.436133|
 
-    ![image](https://github.com/wayanadi26/Belajar-Analisis-Data-dengan-Python/assets/88713651/dbf4e580-9291-496d-ab82-02536a938daf)
+   ![image](https://github.com/wayanadi26/Belajar-Analisis-Data-dengan-Python/assets/88713651/dbf4e580-9291-496d-ab82-02536a938daf)
 
   
 - Hasil evaluasi menunjukkan bahwa model dengan algoritma Random Forest memiliki akurasi yang lebih tinggi dan tingkat error yang lebih kecil dibandingkan algoritma lain dalam proyek ini. Ini menunjukkan bahwa Random Forest adalah pilihan yang efektif untuk memprediksi kualitas udara dengan tingkat ketepatan yang lebih baik, menjadikannya pilihan yang solid dalam proyek ini.
