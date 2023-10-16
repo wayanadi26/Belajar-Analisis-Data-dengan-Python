@@ -66,23 +66,12 @@ Dari semua variable yang ada, variable PM2.5 menjadi fitur yang akan di prediksi
 ### Univariate Analisis
 Univariate Analysis adalah menganalisis setiap fitur didalam data secara terpisah.
 #### Analisis jumlah nilai unique pada setiap fitur kategorik
-Terdapat 2 fitur kategorik yang ada didalam dataset yaitu wd dan station.
-1. wd (arah angin), fitur ini memiliki sebaran yang cukup merata
-   
-   ![image](https://github.com/wayanadi26/Belajar-Analisis-Data-dengan-Python/assets/88713651/5c2518e2-0a82-490c-a06b-3fae647b8348)
+Terdapat 2 fitur kategorik yang ada didalam dataset yaitu wd dan station, fitur 'wd' ini memiliki sebaran yang cukup merata, Data yang tersebar berada diantara rentang 1000 sampai dengan 3000 sedangkan fitur 'station' (nama lokasi pemantauan kualitas udara), fitur ini hanya terdiri dari satu data nama lokasi yaitu Changping sebanyak 35064 data.
 
-   Gambar 1. sebaran fitur wd
-
-3. station (nama lokasi pemantauan kualitas udara), fitur ini hanya terdiri dari satu data nama lokasi yaitu Changping sebanyak 35064 data
-   ![image](https://github.com/wayanadi26/Belajar-Analisis-Data-dengan-Python/assets/88713651/b5b161c2-3f24-4444-b228-27fb8072152f)
-
-   Gambar 2. Sebaran fitur station
-
-   
 #### Analisis sebaran pada setiap fitur numerik
 ![image](https://github.com/wayanadi26/Belajar-Analisis-Data-dengan-Python/assets/88713651/be404a86-adcc-412b-a338-fce1c5ae6cb9)
 
-Gambar 3: Analisis sebaran pada setiap fitur numerik
+Gambar 1: Analisis sebaran pada setiap fitur numerik
 
 Analisis:
 - Peningkatan Partikel udara sebanding dengan penurunan jumlah sampel. Hal ini dapat kita lihat jelas dari histogram "PM2.5" yang grafiknya mengalami penurunan seiring dengan semakin banyaknya jumlah sampel (sumbu x).
@@ -92,16 +81,32 @@ Analisis:
 ### Multivariate analysis
 ![image](https://github.com/wayanadi26/Belajar-Analisis-Data-dengan-Python/assets/88713651/f7127486-da8e-4885-856f-c946b4386f14)
 
-Gambar 4: Analisis fitur kategori
+Gambar 2: Analisis fitur kategori
 
 Fitur 'wd' rata-rata partikel PM2.5 cenderung mirip, rentangnya berada diantara 45 sampai dengan 95. Kesimpulannya fitur kategorikal tidak terlalu mempengaruhi tingkat partikel diudara.
 
 ### Correlation Matrix
 ![image](https://github.com/wayanadi26/Belajar-Analisis-Data-dengan-Python/assets/88713651/056ffc65-0c4c-46ef-a723-6837f917bd11)
 
-Gambar 5: Correlation Matrix
+Gambar 3: Correlation Matrix
 
 Analisis: Berdasarkan hasil visualisasi yang didapat dapat disimpulkan fitur yang berkolerasi tinggi dengan PM2.5 yaitu PM10, NO2, dan CO. Sedangkan wd, date, year, month, day, hour tidak berkorelasi dengan baik sehingga bisa di drop.
+
+### Mengatasi Missing Value
+1. **Mengisi Missing Value dengan Rata-Rata (Mean Imputation)**:
+   ```python
+   df.fillna(value=df.mean(), inplace=True)
+   ```
+   Dalam langkah pertama, kode ini mengisi missing value dalam kolom-kolom numerik dengan nilai rata-rata dari setiap kolom. Ini adalah teknik yang umum digunakan untuk mengatasi missing value dalam data numerik. Misalnya, jika Anda memiliki data keuangan dan ada beberapa nilai yang hilang dalam kolom "Pendapatan", Anda dapat menggantinya dengan rata-rata pendapatan dari seluruh data. `df.mean()` menghitung rata-rata untuk setiap kolom numerik dalam DataFrame dan menggantikan nilai-nilai yang hilang dengan rata-rata tersebut.
+
+2. **Mengisi Missing Value dalam Kolom Objek (Object Columns) dengan "Unknown"**:
+   ```python
+   object_columns = df.select_dtypes(include=['object'])
+   df[object_columns.columns] = object_columns.fillna("Unknown")
+   ```
+   Dalam langkah kedua, kode ini mengatasi missing value dalam kolom dengan tipe data objek (biasanya berisi data kategorikal) dengan menggantinya dengan string "Unknown". Ini adalah pendekatan yang umum digunakan untuk mengatasi missing value dalam kolom-kolom yang berisi kategori atau label, di mana menggantinya dengan "Unknown" dapat menjadi alternatif yang berguna.
+
+Kombinasi dari kedua langkah ini memastikan bahwa data numerik diisi dengan nilai rata-rata yang masuk akal, sementara data objek (kategori) diisi dengan "Unknown" sebagai placeholder. Teknik ini membantu mempertahankan integritas data dan memungkinkan analisis lebih lanjut tanpa kehilangan informasi yang signifikan karena missing value.
 
 ## Data Preparation
 1. Train Test Split
@@ -141,11 +146,24 @@ Dalam pengembangan model untuk dataset ini, digunakan beberapa jenis algoritma r
    - Kelemahan:
       - Kompleksitas model dan waktu pelatihan yang lebih lama.
 
-### Fine-Tuning Model
-1. Decision Tree Regressor:
-   Pada model ini dilakukan fine-tuning pada parameter "max_depth" untuk mengontrol kedalaman pohon keputusan. Hasil fine-tuning menunjukkan bahwa nilai "max_depth" yang lebih rendah mengurangi overfitting dan memberikan hasil prediksi yang lebih baik.
-2. Random Forest Regressor:
-   Pada model ini dilakukan fine-tuning pada beberapa parameter, termasuk "n_estimators" (jumlah pohon dalam ensemble) dan "max_depth" untuk masing-masing pohon. Hasilnya menunjukkan bahwa peningkatan jumlah "n_estimators" memberikan sedikit peningkatan dalam akurasi, sementara mengatur "max_depth" membantu mengendalikan overfitting.
+### Fine-Tuning Model dan Parameter yang digunakan
+Berikut adalah parameter-parameter yang biasanya diperlukan dalam fine-tuning untuk setiap algoritma yang telah Anda sebutkan:
+1. **Linear Regression**: Linear Regression adalah model yang cukup sederhana, dan parameter utamanya adalah koefisien (bobot) yang menentukan hubungan linier antara variabel independen dan dependen. Anda tidak memerlukan fine-tuning yang rumit untuk model ini.
+
+2. **Decision Tree Regressor**: Decision Tree memiliki beberapa parameter penting, di antaranya:
+   - `max_depth`: Ini adalah parameter yang mengatur kedalaman pohon. Anda dapat mengontrol kompleksitas model dengan mengatur nilai ini.
+   - `min_samples_split`: Parameter ini menentukan jumlah sampel minimum yang diperlukan untuk membagi node dalam pohon.
+   - `min_samples_leaf`: Parameter ini menentukan jumlah sampel minimum yang diperlukan untuk membentuk daun (leaf) dalam pohon.
+   - `max_features`: Parameter ini mengatur jumlah fitur yang akan dipertimbangkan saat mencari pemisah terbaik.
+
+3. **Random Forest Regressor**: Random Forest adalah ensemble model yang didasarkan pada Decision Trees, sehingga parameter Decision Tree juga berlaku di sini. Selain itu, ada beberapa parameter tambahan yang perlu dipertimbangkan:
+   - `n_estimators`: Ini adalah jumlah pohon keputusan dalam ensemble.
+   - `max_features`: Parameter ini mengatur jumlah fitur yang akan dipertimbangkan saat mencari pemisah terbaik dalam setiap pohon.
+   - `bootstrap`: Jika diatur sebagai True, maka sampel bootstrap akan digunakan saat melatih setiap pohon.
+
+Selama proses fine-tuning, Anda dapat mengubah nilai-nilai parameter ini dan memeriksa dampaknya pada kinerja model. Anda dapat menggunakan metode cross-validation atau pengujian validasi untuk menentukan kombinasi parameter terbaik untuk setiap algoritma. Nilai-nilai optimal parameter akan bervariasi tergantung pada dataset dan masalah yang Anda hadapi.
+
+   
 
 ### Alasan Pemilihan Model
 1. Linear Regression: Model ini mencoba untuk mencari hubungan linier antara variabel dependen dan independen. Ini melibatkan mencari koefisien regresi terbaik yang menggambarkan hubungan tersebut.
@@ -163,11 +181,21 @@ Metrik evaluasi yang digunakan pada proyek ini adalah akurasi dan mean squared e
 
 - Berikut hasil evaluasi pada proyek
   - Accuracy
-    
+    |   Model   |   Score   |
+|:---------:|:---------:|
+|    LR     |  0.677818 |
+|    DT     |  0.812010 |
+|    RF     |  0.822758 |
+
     ![image](https://github.com/wayanadi26/Belajar-Analisis-Data-dengan-Python/assets/88713651/00d11cd7-e309-4f20-b676-d2034dc99622)
     
   - MSE
-    
+    | Model | MSE     |
+|-------|---------|
+| LR    | 0.384535|
+| DT    | 0.473679|
+| RF    | 0.436133|
+
     ![image](https://github.com/wayanadi26/Belajar-Analisis-Data-dengan-Python/assets/88713651/dbf4e580-9291-496d-ab82-02536a938daf)
 
   
